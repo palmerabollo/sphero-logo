@@ -5,10 +5,10 @@ Control your sphero robot ball using LOGO commands
 
 Movement
 --------
-FORWARD n       Move the turtle forward n centimeters
-FW n    
+  FORWARD n       Move the turtle forward n centimeters
+  FW n    
 
-BACKWARD n      Move the turtle backward n centimeters
+  BACKWARD n      Move the turtle backward n centimeters
 
 RIGHT n         Move the turtle left or right n degrees
 RT n
