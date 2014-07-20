@@ -4,16 +4,29 @@ var repl = require('repl'),
 
 var DEFAULT_SPEED = 40;
 
+var MOVE_COMMANDS_HEADING = {
+    'FW': 0,
+    'FORWARD': 0,
+    'BW': 180,
+    'BACKWARD': 180,
+    'RT': 90,
+    'RIGHT': 90,
+    'LT': 270,
+    'LEFT': 270
+};
+
 function interpreter(cmd, context, filename, callback) {
     try {
         // TODO better parsing
         var parts = cmd.trim().split(/\W+/).filter(function (item) { return item; });
-        if (['FW', 'FORWARD'].indexOf(dparts[0]) > -1) {
+
+        var heading = MOVE_COMMANDS_HEADING[parts[0]];
+        if (heading !== undefined) {
             utils.controlDistance.call(robot, parts[1], callback);
-            robot.sphero.roll(DEFAULT_SPEED, 0); // speed, heading
-        } else if (['BW', 'BACKWARD'].indexOf(parts[0]) > -1) {
-            utils.controlDistance.call(robot, parts[1], callback);
-            robot.sphero.roll(DEFAULT_SPEED, 180); // speed, heading
+            robot.sphero.roll(DEFAULT_SPEED, heading); // speed, heading
+        } else if (parts[0] === 'COLOR') {
+            var hexColor = (parts[1] << 16) | (parts[2] << 8) | parts[3];
+            robot.sphero.setRGB(hexColor);
         } else {
             callback(null, eval(cmd));
         }

@@ -26,7 +26,7 @@ var robot = Cylon.robot({
         my.sphero.setDataStreaming(['locator', 'accelOne', 'velocity'], opts);
         // SetBackLed turns on the tail LED of the sphero that helps identify sphero's heading
         my.sphero.setBackLED(255); // 0-255, led brightness
-        my.sphero.setRGB(0xff0000);
+        my.sphero.setRGB(0x000000);
 
         /**
         my.sphero.on('data', function ondata(data) {
