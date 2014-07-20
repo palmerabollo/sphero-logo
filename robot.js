@@ -13,7 +13,7 @@ var robot = Cylon.robot({
             // n: int, divisor of the max sampling rate, 400 hz/s
             // n = 40 means 400/40 = 10 data samples per second,
             // n = 200 means 400/200 = 2 data samples per second
-            n: 40,
+            n: 200,
             // m: int, number of data packets buffered before passing them to the stream
             // m = 10 means each time you get data it will contain 10 data packets
             // m = 1 is usually best for real time data readings.

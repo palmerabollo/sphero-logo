@@ -2,7 +2,7 @@ var repl = require('repl'),
     utils = require('./utils'),
     robot = require('./robot').robot;
 
-var DEFAULT_SPEED = 40;
+var DEFAULT_SPEED = 10;
 
 var MOVE_COMMANDS_HEADING = {
     'FW': 0,
@@ -23,16 +23,18 @@ function interpreter(cmd, context, filename, callback) {
         var heading = MOVE_COMMANDS_HEADING[parts[0]];
         if (heading !== undefined) {
             utils.controlDistance.call(robot, parts[1], callback);
-            robot.sphero.roll(DEFAULT_SPEED, heading); // speed, heading
+            robot.sphero.roll(DEFAULT_SPEED, heading);
         } else if (parts[0] === 'COLOR') {
             var hexColor = (parts[1] << 16) | (parts[2] << 8) | parts[3];
             robot.sphero.setRGB(hexColor);
         } else {
-            callback(null, eval(cmd));
+            with (context) {
+                callback(null, eval(cmd));
+            }
         }
     } catch (e) {
         console.log('Wrong command. Try again.', e);
-        callback(null);
+        callback();
     }
 }
 
@@ -43,8 +45,8 @@ var options = {
 };
 
 var r = repl.start(options);
-// var context = r.context;
-// context.sphero = robot.sphero;
+var context = r.context;
+context.sphero = robot.sphero;
 
 r.on('exit', function () {
     console.log('good bye');
