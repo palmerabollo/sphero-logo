@@ -31,16 +31,14 @@ var robot = Cylon.robot({
         my.sphero.setBackLED(255); // 0-255, led brightness
         my.sphero.setRGB(0x000000);
 
-        /*
         my.sphero.on('data', function ondata(data) {
-            console.log('locator', data);
+            console.log('data', data);
         });
 
         my.sphero.on('collision', function oncollision(data) {
             console.log('collision', data);
             my.sphero.stop();
         });
-        */
     }
 });
 
