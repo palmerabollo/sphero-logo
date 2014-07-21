@@ -10,8 +10,8 @@ function controlDistance(distance, callback) {
         initialPosition = initialPosition || data;
 
         var distanceMoved = Math.sqrt(
-            Math.pow(initialPosition[0] - data[0], 2) +
-            Math.pow(initialPosition[1] - data[1], 2)
+            Math.pow(initialPosition[3] - data[3], 2) +
+            Math.pow(initialPosition[4] - data[4], 2)
         );
 
         if (distanceMoved >= distance) {
